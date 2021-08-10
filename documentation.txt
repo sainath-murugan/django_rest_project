@@ -1,0 +1,34 @@
+Job webapp API:
+
+Documentations:
+
+development:
+   This project is developed by django and django restframework.
+   In this project i have created a CustomUser class from AbstractUser class to extend user model
+   I have used 3rd party library like allauth, dj-rest-auth for login,logout,registeration,password reset urls..etc.
+   I have used TokenAuthentication in this project. I have also included sessionAuthentication for development because i have not used any frontend libraries to catch token in Authorization header.
+   I have also used pagination class for good pagination.
+
+How to use:
+    In this Project i have created three Class base views,
+        1. JobList
+        2. UserDetails
+        3. JobDetail
+    api/dj-rest-auth/registration/ --> this url provided by dj_rest_auth is used to register newuser.
+
+    After register you can use 'api/dj-rest-auth/login' this url to login after successfull login restframework will return a token.
+
+    api/ --> this url is from JobList view, it will display all jobs. And user can also post new jobs in this url.I have used Authentication in this url.
+    I have also used 'serializers.SerializerMethodField' class and used to display all urls of detail view. so the user can easily view the object detaily by clicking it.
+
+    api/users/  --> this url is from UserDetails view, it will display all user's name, id and job post created by them.
+
+    I have used Custom permission class in UserDetails view so the original user of the post, only has the permission to edit the post.
+    
+    Finally i have used uuid for Job models as primary key, because it was displayed in detail view with primary key in url.If uuid is not used the original database key will be displayed in url. It will
+    be very favourable for hackers to know number of datasets in database. so i have used uuid as primary key.
+
+
+
+    
+    
