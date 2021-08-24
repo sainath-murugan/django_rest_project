@@ -15,12 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from decouple import config
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path( config("ADMIN_URL") , admin.site.urls),
     path('api/', include('API.urls')),
     # path('rest-urls/', include('rest_framework.urls')),
     path('api/dj-rest-auth/', include('dj_rest_auth.urls')), 
     path('api/dj-rest-auth/registration/', 
        include('dj_rest_auth.registration.urls')),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
